@@ -467,6 +467,7 @@ const movies = [
         image: "https://img.cdno.my.id/thumb/w_171/h_257/the-life-list-1630858717.webp",
         genre: "Adventure" 
     },
+    
    { 
         name: "The Electric State", 
         page: "asset/movies/PAGEMOVIE_electricstste.html", 
@@ -494,7 +495,7 @@ function displayMovies(movieList, elementId) {
 
     movieItem.innerHTML = `
       <div class="movie-card">
-        <img src='${movie.image}' alt="BONGWATCH-${movie.name}" loading="lazy">
+        <img src="${movie.image}" alt="BONGWATCH-${movie.name}" loading="lazy">
         <div class="movie-info">
           <div class="movie-title">${movie.name}</div>
           <figure></figure>
@@ -507,20 +508,15 @@ function displayMovies(movieList, elementId) {
   });
 }
 
-// Function to load movies
-function loadMovies() {
-  if (!window.movies || !Array.isArray(window.movies)) {
-    console.error("Movies array not defined!");
-    return;
-  }
+
 
   let shuffled = shuffleArray([...movies]);
-  let recommendedMovies = shuffled.slice(0, 4);
-  let otherMovies = shuffled.slice(4, 34);
+let recommendedMovies = shuffled.slice(0, 4);
+let otherMovies = shuffled.slice(4, 34);
 
-  displayMovies(recommendedMovies, "recommended-list");
-  displayMovies(otherMovies, "other-movies-list");
-}
+displayMovies(recommendedMovies, "recommended-list");
+displayMovies(otherMovies, "other-movies-list");
+
 
 // Toggle favorite status
 function toggleFavorite(movieName, moviePage, movieImage) {
