@@ -1,0 +1,325 @@
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1f1f1f;
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: orange;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 18px;
+}
+
+.nav-links a:hover {
+    color: orange;
+}
+
+/* Movie Page Container */
+.movie-page {
+    max-width: 900px;
+    margin: 40px auto;
+  
+}
+
+/* Movie Poster Container */
+.movie-poster-container {
+position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+}
+
+.movie-poster-container:hover {
+    transform: scale(1.05);
+}
+
+/* Movie Poster Image */
+.movie-poster {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    display: block;
+    
+}
+
+/* Play Button Overlay */
+
+.movie-poster-container:hover .play-icon {
+    background: rgba(255, 0, 0, 0.8);
+}
+.poster_center {
+    position: relative;
+    width: 100%;
+    max-width: 700px; /* Adjust max width */
+    margin: 0 auto; /* Centering */
+}
+/* Movie Details */
+.movie-page h1 {
+    font-size: 32px;
+    margin-top: 20px;
+}
+
+.movie-page p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 15px auto;
+    opacity: 0.8;
+}
+
+/* Watermark */
+/* Responsive Video Container */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 700px; /* Adjust max width */
+    padding-top: 56.25%; /* Aspect ratio: 16:9 */
+    margin: 0 auto; /* Centering */
+}
+
+/* Responsive Iframe */
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.video-wrapper Video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+/* Watermark */
+.watermark {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .movie-page {
+        padding: 20px;
+    }
+
+    iframe {
+        height: 300px;
+    }
+    video {
+        height: 250px;
+    }
+
+    .movie-page h1 {
+        font-size: 26px;
+    }
+
+    .movie-page p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-page h1 {
+        font-size: 22px;
+    }
+
+    .movie-page p {
+        font-size: 14px;
+    }
+
+    iframe {
+        height: 250px;
+    }
+    video {
+        height: 250px;
+    }
+
+    .play-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .play-icon::before {
+        font-size: 30px;
+    }
+}
+/* Movie Buttons Container */
+.movie-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Bookmark & Share Buttons */
+.movie-buttons button {
+    background: orange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.movie-buttons button:hover {
+    background: #ff1a1a;
+}
+    .AdContaskl {
+        text-align: center;
+        background: #1f1f1f; /* Dark background for contrast */
+        padding: 15px;
+        border-radius: 10px;
+        color: white;
+        margin: 20px auto;
+        width: 320px; /* Slightly wider than the ad */
+    }
+
+    .AdContaskl strong {
+        display: block;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .AdContaskl small {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 10px;
+        opacity: 0.7;
+    }
+
+    .AdContaskl p {
+        font-size: 14px;
+        margin-top: 10px;
+        opacity: 0.8;
+    }
+      .Adsert {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .theads {
+        text-align: center;
+        background: #1f1f1f; /* Dark background for contrast */
+        padding: 10px;
+        border-radius: 8px;
+        color: white;
+        max-width: 90%; /* Keeps it responsive */
+        overflow: hidden;
+    }
+
+    .theads small {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 5px;
+        opacity: 0.8;
+    }
+
+    /* Responsive Ad Size */
+    @media (max-width: 768px) {
+        .theads script {
+            width: 320px !important; 
+            height: 50px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .theads script {
+            width: 300px !important;
+            height: 50px !important;
+        }
+    }
+  .Adsert img {
+    display: block;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+.alert-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+            color:black;
+        }
+
+        .alert-popup button {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            background: red;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Hidden Ad Block Check */
