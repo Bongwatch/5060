@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bongwatch</title>
+    <link rel="stylesheet" href="style/styles.css">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/PenutCreation/Bongwatch/refs/heads/main/img/B_20250324_170033_0000.png">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="logo">Bongwatch</h1>
+        <div class="nav-links">
+            <button id="login-btn">Login</button>
+            <button id="signup-btn">Sign Up</button>
+            <button id="logout-btn" style="display: none;">Logout</button>
+            
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Bongwatch</h1>
+            <p>Watch your favorite movies anytime, anywhere.</p>
+<button class="rent-btn" onclick="window.location.href='Movies.html'">Browse Movies</button>
+        </div>
+      
+    </header>
+<div class="AdContaskl">
+   <strong>Advertisements:</strong>
+   <small>Provided by Ads Networks</small>
+   <div style="display: flex; justify-content: center; align-items: center;">
+        <script type="text/javascript">
+            atOptions = {
+                'key': '016a0430c728bfd369df0af5c69d190a',
+                'format': 'iframe',
+                'height': 250,
+                'width': 300,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/016a0430c728bfd369df0af5c69d190a/invoke.js"></script>
+   </div>
+   <p>Ads are scanned by Google </p>
+</div>
+    <!-- Sign Up Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signup-modal')">&times;</span>
+            <h2>Sign Up</h2>
+            <input type="email" id="signup-email" placeholder="Enter Email">
+            <input type="password" id="signup-password" placeholder="Enter Password">
+            <button onclick="signUp()">Sign Up</button>
+            <p id="signup-msg"></p>
+        </div>
+    </div>
+
+    <!-- Verification Modal -->
+    <div id="verify-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('verify-modal')">&times;</span>
+            <h2>Email Verification</h2>
+            <p>Enter the 6-digit code: <b id="verification-code"></b></p>
+            <input type="text" id="verify-code" placeholder="Enter Code">
+            <button onclick="verifyAccount()">Verify</button>
+            <p id="verify-msg"></p>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <h2>Login</h2>
+            <input type="email" id="login-email" placeholder="Enter Email">
+            <input type="password" id="login-password" placeholder="Enter Password">
+            <button onclick="logIn()">Login</button>
+            <p id="login-msg"></p>
+        </div>
+    </div>
+
+    <script>
+        // Open and Close Modals
+        function openModal(id) {
+            document.getElementById(id).style.display = "block";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+        }
+
+        // Sign Up Function
+        function signUp() {
+            let email = document.getElementById("signup-email").value.trim();
+            let password = document.getElementById("signup-password").value.trim();
+            let users = JSON.parse(localStorage.getItem("users")) || {};
+
+            if (!email || !password) {
+                document.getElementById("signup-msg").innerText = "All fields are required!";
+                return;
+            }
+            if (users[email]) {
+                document.getElementById("signup-msg").innerText = "Email already registered!";
+                return;
+            }
+
+            let verificationCode = Math.floor(100000 + Math.random() * 900000); // 6-digit code
+            localStorage.setItem("verificationCode", verificationCode);
+            localStorage.setItem("pendingUser", JSON.stringify({ email, password }));
+
+            document.getElementById("verification-code").innerText = verificationCode;
+            closeModal("signup-modal");
+            openModal("verify-modal");
+        }
+
+        // Verify Account
+        function verifyAccount() {
+            let enteredCode = document.getElementById("verify-code").value.trim();
+            let storedCode = localStorage.getItem("verificationCode");
+            prompt("verificationCode", storedCode);
+            let pendingUser = JSON.parse(localStorage.getItem("pendingUser"));
+
+            if (enteredCode === storedCode && pendingUser) {
+                let users = JSON.parse(localStorage.getItem("users")) || {};
+                users[pendingUser.email] = pendingUser.password;
+                localStorage.setItem("users", JSON.stringify(users));
+
+                localStorage.removeItem("verificationCode");
+                localStorage.removeItem("pendingUser");
+
+                document.getElementById("verify-msg").innerText = "Account Verified! Please login.";
+                setTimeout(() => {
+                    closeModal("verify-modal");
+                    openModal("login-modal");
+                }, 1500);
+            } else {
+                document.getElementById("verify-msg").innerText = "Incorrect code!";
+            }
+        }
+
+        // Login Function
+        function logIn() {
+            let email = document.getElementById("login-email").value.trim();
+            let password = document.getElementById("login-password").value.trim();
+            let users = JSON.parse(localStorage.getItem("users")) || {};
+
+            if (users[email] === password) {
+                localStorage.setItem("loggedInUser", email);
+                updateUI();
+                closeModal("login-modal");
+            } else {
+                document.getElementById("login-msg").innerText = "Invalid email or password!";
+            }
+        }
+
+        // Logout Function
+        function logOut() {
+            localStorage.removeItem("loggedInUser");
+            updateUI();
+        }
+
+        // Update UI Based on Login Status
+        function updateUI() {
+            let loggedInUser = localStorage.getItem("loggedInUser");
+
+            if (loggedInUser) {
+                document.getElementById("login-btn").style.display = "none";
+                document.getElementById("signup-btn").style.display = "none";
+                document.getElementById("logout-btn").style.display = "block";
+            } else {
+                document.getElementById("login-btn").style.display = "block";
+                document.getElementById("signup-btn").style.display = "block";
+                document.getElementById("logout-btn").style.display = "none";
+            }
+        }
+
+        // Event Listeners
+        document.getElementById("login-btn").addEventListener("click", () => openModal("login-modal"));
+        document.getElementById("signup-btn").addEventListener("click", () => openModal("signup-modal"));
+        document.getElementById("logout-btn").addEventListener("click", logOut);
+
+        // Initialize UI on Page Load
+        updateUI();
+    </script>
+
+    <style>
+        /* Modal Styles */
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; border-radius: 5px; }
+        .modal-content { text-align: center; }
+        .close { cursor: pointer; float: right; font-size: 20px; }
+        input { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+        button { background: blue; color: white; padding: 10px; border: none; cursor: pointer; }
+        button:hover { background: darkblue; }
+    </style>
+
+</body>
+</html>

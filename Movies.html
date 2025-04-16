@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies - Bongwatch</title>
+    <link rel="stylesheet" href="style/styles.css">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/PenutCreation/Bongwatch/refs/heads/main/img/B_20250324_170033_0000.png">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h1 class="logo">Bongwatch</h1>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+        </div>
+    </nav>
+
+
+<div class="Adsert">
+    <div class="theads">
+        <small><strong>Advertisements:</strong> Provided by Ads Network</small>
+        <script type="text/javascript">
+            atOptions = {
+                'key': 'e08c8bd506fcb544d18e45577f389cbd',
+                'format': 'iframe',
+                'height': 60,
+                'width': 468,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/e08c8bd506fcb544d18e45577f389cbd/invoke.js"></script>
+    </div>
+</div>
+
+
+<center>
+<input type="text" id="search" placeholder="Search movies..." oninput="searchMovies()">
+<label for="genreFilter">Filter by Genre:</label>
+<select id="genreFilter" onchange="filterMovies()"></select>
+
+</center>
+<div id="movie"></div>
+<div id="movie-list"></div>
+
+    <div class="movies-container" id="recommended-list"></div>
+    <h2>Other Movies</h2>
+    <div class="movies-container" id="other-movies-list"></div>
+
+<div class="AdContaskl">
+   <strong>Advertisements:</strong>
+   <small>Provided by Ads Networks</small>
+   <div style="display: flex; justify-content: center; align-items: center;">
+        <script type="text/javascript">
+            atOptions = {
+                'key': '016a0430c728bfd369df0af5c69d190a',
+                'format': 'iframe',
+                'height': 250,
+                'width': 300,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/016a0430c728bfd369df0af5c69d190a/invoke.js"></script>
+   </div>
+   <p>Ads are scanned by Google </p>
+</div>
+    <script src="asset/movies.js"></script>
+</body>
+</html>
+<style>
+/* Global Styles */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #141414;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #000;
+}
+
+.logo {
+    color: #f39c12;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 16px;
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.7;
+}
+
+/* Search Input */
+input[type="text"] {
+    width: 70%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 20px auto;
+    display: block;
+    background: #333;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+/* Movies Grid */
+/* Movie Grid */
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Movie Card */
+.movie-card {
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.movie-card img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+
+
+/* Button is hidden by default */
+
+
+/* Show button on hover or tap */
+.movie-card:hover .rent-btn,
+.movie-card:focus-within .rent-btn {
+  display: inline-block;
+}
+
+
+/* Overlay on hover */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+.movie-card {
+  position: relative;
+  overflow: hidden;
+  width: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.movie-card img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.movie-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+
+.movie-card:hover .movie-info {
+  opacity: 1;
+}
+
+.movie-title {
+  font-weight: bold;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.rent-btn {
+  background-color: #f39c12;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+</style>
