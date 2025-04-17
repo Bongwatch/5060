@@ -2,6 +2,68 @@ try {
   // --- Paste your code here, example below:
 
 const movies = [
+   { 
+        name: "Origin", 
+        page: "asset/movies/PAGEMOVIE_origin-1630858872.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/origin-1630858872.webp",
+        genre: "action" 
+    },
+    { 
+        name: "Dark Nuns", 
+        page: "asset/movies/PAGEMOVIE_dark-nuns-1630858752.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/dark-nuns-1630858752.jpg",
+        genre: "action" 
+    },
+    { 
+        name: "Harbin", 
+        page: "asset/movies/PAGEMOVIE_harbin-9697602.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/harbin-1630858832.jpg",
+        genre: "action" 
+    },
+    { 
+        name: "Dirty Money", 
+        page: "asset/movies/PAGEMOVIE_dirty-money-6838.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/dirty-money-1630858831.jpg",
+        genre: "action" 
+    },
+   { 
+        name: "Uprising", 
+        page: "asset/movies/PAGEMOVIE_uprising-93747.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/uprising-1630857769.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Rule Breakers", 
+        page: "asset/movies/PAGEMOVIE_rule-breakers.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/rule-breakers-1630858870.webp",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Avatar", 
+        page: "asset/movies/PAGEMOVIE_avatar-53849329.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/avatar-4318.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Aliens", 
+        page: "asset/movies/PAGEMOVIE_Aliens-637283838.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/aliens-5835.jpg",
+        genre: "Adventure" 
+    },
+
+   { 
+        name: "The Terminator", 
+        page: "asset/movies/PAGEMOVIE_the-terminator.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/the-terminator-2184.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "After Death", 
+        page: "asset/movies/PAGEMOVIE_after-death-58273.html", 
+        image: "https://img.cdno.my.id/thumb/w_234/h_351/after-death-1630858863.webp",
+        genre: "Adventure" 
+    },
+    
     { 
         name: "Pusaka", 
         page: "asset/movies/PAGEMOVIE_pusaka-38483.html", 
