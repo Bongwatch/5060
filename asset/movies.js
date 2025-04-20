@@ -3,6 +3,136 @@ try {
 
 const movies = [
    { 
+        name: "Snow White", 
+        page: "asset/movies/PAGEMOVIE_snow-white-1630858706.html", 
+        image: "https://img.cdno.my.id/thumb/w_312/h_468/snow-white-1630858706.jpg",
+        genre: "action" 
+    },
+    { 
+        name: "Iron Within", 
+        page: "asset/movies/PAGEMOVIE_iron-within-1630858852.html", 
+        image: "https://img.cdno.my.id/thumb/w_312/h_468/iron-within-1630858852.webp",
+        genre: "action" 
+    },
+    { 
+        name: "Nimona", 
+        page: "asset/movies/PAGEMOVIE_nimona-1630855397.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/nimona-1630855397.jpg",
+        genre: "action" 
+    },
+    { 
+        name: "Avatar: The Way of Water", 
+        page: "asset/movies/PAGEMOVIE_avatar-way-of-water.html", 
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrVqLEwgcLlUjls-o6ahgTNyekv3quiAfrNL62Axed5zM1lc1jwrGsh4A&amp;s=10",
+        genre: "action" 
+    },
+   { 
+        name: "Wonka", 
+        page: "asset/movies/PAGEMOVIE_wonka-1630856393.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/wonka-1630856207.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Mr Doom", 
+        page: "asset/movies/PAGEMOVIE_mr-doom-1038483944.html", 
+        image: "https://img.cdno.my.id/thumb/w_156/h_234/mr-doom-1630858894.webp",
+        genre: "Adventure" 
+    },
+   { 
+        name: "The Highwayman", 
+        page: "asset/movies/PAGEMOVIE_the-high-way-man.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/the-highwayman-1630853362.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "The Jack in the Box: Awakening", 
+        page: "asset/movies/PAGEMOVIE_the-jack-in-the-box-awakening-1630852585.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/the-jack-in-the-box-awakening-1630852585.jpg",
+        genre: "Adventure" 
+    },
+
+   { 
+        name: "Saltwater: The Battle for Ramree Island", 
+        page: "asset/movies/PAGEMOVIE_saltwater-the-battle-for-ramree-island-1621869051.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/saltwater-the-battle-for-ramree-island-1621869051.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Billie Eilish Unfiltered", 
+        page: "asset/movies/PAGEMOVIE_billie-eilish-unfiltered-1630858893.html", 
+        image: "https://img.cdno.my.id/thumb/w_156/h_234/billie-eilish-unfiltered-1630858893.webp",
+        genre: "Adventure" 
+    },
+    
+   { 
+        name: "Not Just a Goof", 
+        page: "asset/movies/PAGEMOVIE_not-just-a-goof-1630858879.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/not-just-a-goof-1630858879.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "The Shift", 
+        page: "asset/movies/PAGEMOVIE_the-shift-48382838.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/the-shift-1630858743.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Cora", 
+        page: "asset/movies/PAGEMOVIE_cora-1630858866.html", 
+        image: "https://img.cdno.my.id/thumb/w_234/h_351/cora-1630858866.webp",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Interstate", 
+        page: "asset/movies/PAGEMOVIE_interstate-1630857393.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/interstate-1630857393.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "The Ape Star", 
+        page: "asset/movies/PAGEMOVIE_the-ape-star-1627222790.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/the-ape-star-1627222790.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Hitting The Apex", 
+        page: "asset/movies/PAGEMOVIE_hitting-the-apex-5355.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/hitting-the-apex-5355.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Planet of The Apes", 
+        page: "asset/movies/PAGEMOVIE_planet-of-the-apes-4138..html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/planet-of-the-apes-4138.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Planet of The Apes(2001)", 
+        page: "asset/movies/PAGEMOVIE_planet-of-the-apes-2001-5460.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/planet-of-the-apes-2001-5460.jpg",
+        genre: "Adventure" 
+    },
+    
+  { 
+        name: "War For The Planet Of The Apes", 
+        page: "asset/movies/PAGEMOVIE_war-for-the-planet-of-the-apes-21331.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/war-for-the-planet-of-the-apes-21331.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Rise Of The Planet Of The Apes", 
+        page: "asset/movies/PAGEMOVIE_rise-of-the-planet-of-the-apes-3096.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/rise-of-the-planet-of-the-apes-3096.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Kingdom of the Planet of the Apes", 
+        page: "asset/movies/PAGEMOVIE_Kingdom-of-the-Planet-of-the Apes-1627222790.html", 
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-_kiWlZbIJKqGZy8L4M5XXJ_5S6ndaDFPCjvq5W-ZVeupfUIR",
+        genre: "Adventure" 
+    },
+
+  { 
         name: "Origin", 
         page: "asset/movies/PAGEMOVIE_origin-1630858872.html", 
         image: "https://img.cdno.my.id/thumb/w_171/h_257/origin-1630858872.webp",
