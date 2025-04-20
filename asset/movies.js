@@ -688,13 +688,13 @@ function displayMovies(movieList, elementId) {
 
     movieItem.innerHTML = `
       <div class="movie-card">
-        <img src="${movie.image}" alt="BONGWATCH-${movie.name}" loading="lazy">
-        <div class="movie-info">
-          <div class="movie-title">${movie.name}</div>
-          <figure></figure>
-          <button class="rent-btn" onclick="location.href='${movie.page}'">Watch</button>
-        </div>
-      </div>
+  <img src='${movie.image}' loading='lazy' alt="Bongwatch:${movie.name}">
+  <div class="movie-info">
+    <div class="movie-title">${movie.name}</div>
+    <figure></figure>
+    <button class="rent-btn" onclick="location.href='${movie.page}'">Watch</button>
+  </div>
+</div>
     `;
 
     container.appendChild(movieItem);
