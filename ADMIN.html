@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Global Disaster Console</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="console">
+    <h1>Global Disaster Console</h1>
+    <p id="status">Fetching your location...</p>
+    <div class="disaster-info" id="disasterInfo">
+      <!-- Disasters will be shown here -->
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+<script>
+const statusText = document.getElementById("status");
+const disasterInfo = document.getElementById("disasterInfo");
+
+// Request Notification Permission only if not granted yet
+if ("Notification" in window && Notification.permission !== "granted") {
+  Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      console.log("Notification permission granted.");
+    } else {
+      console.log("Notification permission denied.");
+    }
+  });
+}
+
+function fetchEarthquakes(lat, lon) {
+  const radiusKm = 500;
+  const now = new Date();
+  const past = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+
+  const url = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=${lat}&longitude=${lon}&maxradiuskm=${radiusKm}&starttime=${past.toISOString()}&endtime=${now.toISOString()}&orderby=time`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      if (data.features.length === 0) {
+        disasterInfo.innerHTML = "<p>No recent earthquakes detected within 500 km.</p>";
+        return;
+      }
+
+      disasterInfo.innerHTML = data.features.map(eq => {
+        const props = eq.properties;
+        const coords = eq.geometry.coordinates;
+        const eqLat = coords[1];
+        const eqLon = coords[0];
+        const magnitude = props.mag || "N/A";
+        const place = props.place || "Unknown location";
+        const time = new Date(props.time).toLocaleString();
+        const detailsUrl = props.url || "#";
+
+        // Show notification if magnitude is 5.0 or more
+        if (Notification.permission === "granted" && magnitude >= 5.0) {
+          new Notification("Earthquake Alert!", {
+            body: `Magnitude ${magnitude} earthquake near ${place}.`,
+            icon: "https://cdn-icons-png.flaticon.com/512/2933/2933181.png"
+          });
+        }
+
+        const mapImage = `https://static-maps.yandex.ru/1.x/?lang=en_US&ll=${eqLon},${eqLat}&z=6&size=450,250&l=map&pt=${eqLon},${eqLat},pm2rdl`;
+
+        return `
+          <div class="quake-entry">
+            <img src="${mapImage}" alt="Map of ${place}" class="map-image"/>
+            <p><strong>Magnitude:</strong> ${magnitude}</p>
+            <p><strong>Location:</strong> ${place}</p>
+            <p><strong>Time:</strong> ${time}</p>
+            <p><a href="${detailsUrl}" target="_blank">More Info</a></p>
+          </div>
+        `;
+      }).join('');
+    })
+    .catch(error => {
+      console.error("Error fetching earthquake data:", error);
+      disasterInfo.innerHTML = "<p>Error retrieving earthquake data.</p>";
+    });
+}
+
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(position => {
+    const { latitude, longitude } = position.coords;
+    statusText.textContent = `Your location: (${latitude.toFixed(2)}, ${longitude.toFixed(2)})`;
+    fetchEarthquakes(latitude, longitude);
+  }, () => {
+    statusText.textContent = "Unable to access your location.";
+  });
+} else {
+  statusText.textContent = "Geolocation is not supported by your browser.";
+}
+
+</script>
+<audio id="alertSound" src="https://freesound.org/data/previews/273/273178_5121236-lq.mp3" preload="auto"></audio>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.console {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  padding: 30px;
+  width: 80%;
+  max-width: 700px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.1);
+  animation: fadeIn 2s ease;
+}
+
+.console h1 {
+  font-size: 2.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.disaster-info {
+  margin-top: 20px;
+  text-align: left;
+  padding: 10px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.9);}
+  to {opacity: 1; transform: scale(1);}
+}
+.quake-entry {
+
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+</style>
+<script>
+new Notification("Test Earthquake Alert!", {
+  body: "This is a test earthquake notification.",
+  icon: "https://cdn-icons-png.flaticon.com/512/2933/2933181.png"
+});
+
+</script>
