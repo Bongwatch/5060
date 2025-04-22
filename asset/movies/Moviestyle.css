@@ -112,18 +112,15 @@ position: relative;
     height: 100%;
     border-radius: 10px;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and box-shadow */
 }
-.video-wrapper Video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    display: block;
-    transition: transform 0.3s ease;
+
+/* Add a glowing effect to the iframe when hovered or focused */
+.video-wrapper iframe:hover,
+.video-wrapper iframe:focus {
+    box-shadow: 0 0 15px 5px orange; /* Green glow effect */
 }
+
 /* Watermark */
 .watermark {
     position: absolute;
@@ -137,6 +134,15 @@ position: relative;
     z-index: 10;
 }
 
+iframe {
+    width: 100%;
+    height: 100vh;
+    border: none;
+    display: block;
+    image-rendering: auto; /* or try crisp-edges, pixelated */
+    transform: scale(1); /* can help with clarity if used smartly */
+    filter: contrast(105%) brightness(105%) saturate(110%);
+}
 
 
 /* Responsive Styles */
@@ -152,9 +158,6 @@ position: relative;
 
     iframe {
         height: 300px;
-    }
-    video {
-        height: 250px;
     }
 
     .movie-page h1 {
@@ -176,9 +179,6 @@ position: relative;
     }
 
     iframe {
-        height: 250px;
-    }
-    video {
         height: 250px;
     }
 
