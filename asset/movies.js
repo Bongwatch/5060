@@ -1,4 +1,22 @@
 const movies = [
+  { 
+        name: "Walking Dead", 
+        page: "asset/movies/PAGEMOVIE_the-walking-dead-1648.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/the-walking-dead-1648.jpg",
+        genre: "action" 
+    },
+    { 
+        name: "War In The USA", 
+        page: "asset/movies/PAGEMOVIE_war-in-the-usa-1630858890.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/war-in-the-usa-1630858890.jpg",
+        genre: "action" 
+    },
+    { 
+        name: "It Feeds", 
+        page: "asset/movies/PAGEMOVIE_it-feeds-1630858891.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/it-feeds-1630858891.webp",
+        genre: "action" 
+    },
    { 
         name: "Home Alone", 
         page: "asset/movies/PAGEMOVIE_home-alone-4954.html", 
