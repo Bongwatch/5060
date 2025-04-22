@@ -1,6 +1,3 @@
-try {
-  // --- Paste your code here, example below:
-
 const movies = [
    { 
         name: "Home Alone", 
@@ -760,112 +757,187 @@ const movies = [
         genre: "Adventure" 
     }
 ];
+
 // Shuffle array function
 function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+
 
 // Function to display movies
 function displayMovies(movieList, elementId) {
-  let container = document.getElementById(elementId);
-  container.innerHTML = "";
+  const container = document.getElementById(elementId);
 
-  movieList.forEach(movie => {
-    let movieItem = document.createElement("div");
-    movieItem.classList.add("movie");
+  const hotMovies = movieList.filter(movie => movie.isHot);
+  const otherMovies = movieList.filter(movie => !movie.isHot);
 
-    movieItem.innerHTML = `
-      <div class="movie-card">
-  <img src='${movie.image}' loading='lazy' alt="Bongwatch:${movie.name}">
-  <div class="movie-info">
-    <div class="movie-title">${movie.name}</div>
-    <figure></figure>
-    <button class="rent-btn" onclick="location.href='${movie.page}'">Watch</button>
-  </div>
-</div>
-    `;
+  container.innerHTML = `
+    ${hotMovies.length > 0 ? `
 
-    container.appendChild(movieItem);
-  });
+      <div class="movies-container hot-movies">
+        ${hotMovies.map(movie => `
+          <div class="movie-card">
+            <img src="${movie.image}" loading="lazy" alt="Bongwatch: ${movie.name}">
+            <div class="hot-label">HOT</div>
+            <div class="movie-info">
+              <div class="movie-title">${movie.name}</div>
+              <figure></figure>
+              <button class="rent-btn" onclick="location.href='${movie.page}'">Watch</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    ` : ''}
+
+
+    <div class="movies-container">
+      ${otherMovies.map(movie => `
+        <div class="movie-card">
+          <img src="${movie.image}" loading="lazy" alt="Bongwatch: ${movie.name}">
+          <div class="movie-info">
+            <div class="movie-title">${movie.name}</div>
+            <figure></figure>
+            <button class="rent-btn" onclick="location.href='${movie.page}'">Watch</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
 }
 
 
-
+// Function to load movies
+function loadMovies() {
   let shuffled = shuffleArray([...movies]);
-let recommendedMovies = shuffled.slice(0, 4);
-let otherMovies = shuffled.slice(4, 34);
+  let recommendedMovies = shuffled.slice(0, 4);
+  let otherMovies = shuffled.slice(4, 34); // Start after recommended ones
 
-displayMovies(recommendedMovies, "recommended-list");
-displayMovies(otherMovies, "other-movies-list");
+  // Display recommended and other movies
+  displayMovies(recommendedMovies, "recommended-list");
+  displayMovies(otherMovies, "other-movies-list");
+
+  // Display the first 9 movies in the movies array as the Latest Movies
+  const latestMovies = movies.slice(0, 9);  // Show the first 9 movies
+  displayMovies(latestMovies, "latest-movies");
+
+  // Handle country-specific movies
+  const country = "USA"; // Default country
+  let countryMovies = getCountryMovies(country);
+  displayMovies(countryMovies, "top-country-movies");
+  document.getElementById("top-country-title").textContent = `Top Movies in ${country}`;
+}
+
+// Function to get and manage country-specific movies
+function getCountryMovies(country) {
+  const currentTime = new Date().getTime();
+  const lastUpdatedTime = localStorage.getItem(`${country}-movies-last-updated`);
+
+  // Check if 3 hours have passed or if no record exists
+  if (!lastUpdatedTime || currentTime - lastUpdatedTime > 3 * 60 * 60 * 1000) {
+    // More than 3 hours passed or no previous data
+    const countryMovies = shuffleArray(movies.filter(movie => movie.country === country)).slice(0, 5);
+    localStorage.setItem(`${country}-movies`, JSON.stringify(countryMovies));
+    localStorage.setItem(`${country}-movies-last-updated`, currentTime); // Update the last updated time
+    return countryMovies;
+  } else {
+    // Return the previously stored movies
+    return JSON.parse(localStorage.getItem(`${country}-movies`));
+  }
+}
+
+
+// Function to get and manage country-specific movies
+
+ 
 
 
 // Toggle favorite status
-function toggleFavorite(movieName, moviePage, movieImage) {
-  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  let index = favorites.findIndex(movie => movie.name === movieName);
-
-  if (index !== -1) {
-    favorites.splice(index, 1); // Remove
-  } else {
-    favorites.push({ name: movieName, page: moviePage, image: movieImage });
-  }
-
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  loadMovies(); // Optional: Refresh view
-}
-
-// Search function
 function searchMovies() {
   const search = document.getElementById("search").value.toLowerCase();
+  const suggestionsContainer = document.getElementById("suggestions-container");
+
+  // Clear previous suggestions
+  suggestionsContainer.innerHTML = "";
+
+  // If the search input is empty, don't show suggestions
+  if (search.trim() === "") {
+    suggestionsContainer.style.display = "none";
+    return; // Do nothing if the search field is empty
+  }
+
+  // Filter movies based on search input
   const filteredMovies = movies.filter(movie => movie.name.toLowerCase().includes(search));
 
-  // Clear and redisplay based on filtered
-  displayMovies(filteredMovies, "recommended-list");
+  // Show suggestions for the filtered movies
+  if (filteredMovies.length > 0) {
+    suggestionsContainer.style.display = "block"; // Show suggestions
+    filteredMovies.forEach(movie => {
+      const suggestionItem = document.createElement("div");
+      suggestionItem.classList.add("suggestion-item");
+
+      // Create an image element
+      const movieImage = document.createElement("img");
+      movieImage.src = movie.image || "default-image.jpg"; // Fallback to default image if none is provided
+      movieImage.alt = movie.name;
+      movieImage.classList.add("suggestion-image");
+
+      // Create text element for movie name
+      const movieName = document.createElement("span");
+      movieName.textContent = movie.name;
+      movieName.classList.add("movie-name");
+
+      // Append the image and name to the suggestion item
+      suggestionItem.appendChild(movieImage);
+      suggestionItem.appendChild(movieName);
+
+      // Add an event listener to populate the search input when a suggestion is clicked
+suggestionItem.addEventListener("click", function() {
+  window.location.href = movie.page;
+});
+
+
+      suggestionsContainer.appendChild(suggestionItem);
+    });
+  } else {
+    // If no matches, display a "No movies found" message
+    const noResultsItem = document.createElement("div");
+    noResultsItem.classList.add("suggestion-item");
+    noResultsItem.textContent = "No movies found.";
+    suggestionsContainer.appendChild(noResultsItem);
+  }
 }
 
 
-// Genre dropdown
-function generateGenreOptions() {
-  let genreFilter = document.getElementById("genreFilter");
-  let genres = [...new Set(movies.map(movie => movie.genre))];
 
-  genreFilter.innerHTML = `<option value="">All</option>`;
-  genres.forEach(genre => {
-    let option = document.createElement("option");
-    option.value = genre;
-    option.textContent = genre;
-    genreFilter.appendChild(option);
-  });
-}
 
-// Genre filtering
+
 function filterMovies() {
-  let selectedGenre = document.getElementById("genreFilter").value.toLowerCase();
-  let movieItems = document.querySelectorAll(".movie"); // Fixed selector
+    let selectedGenre = document.getElementById("genreFilter").value.toLowerCase();
+    let movieItems = document.querySelectorAll("#movie");
 
-  movieItems.forEach(movie => {
-    let titleEl = movie.querySelector(".movie-title");
-    if (!titleEl) return;
+    movieItems.forEach(movie => {
+        let movieName = movie.querySelector("h3").innerText;
+        let movieData = movies.find(m => m.name === movieName);
 
-    let movieName = titleEl.innerText;
-    let movieData = movies.find(m => m.name === movieName);
-
-    if (movieData) {
-      movie.style.display = (selectedGenre === "" || movieData.genre.toLowerCase() === selectedGenre) ? "block" : "none";
-    }
-  });
+        if (movieData) {
+            movie.style.display = (selectedGenre === "" || movieData.genre.toLowerCase() === selectedGenre) ? "block" : "none";
+        }
+    });
 }
 
-// Only assign one onload function
-window.onload = function () {
-  generateGenreOptions();
-  loadMovies();
+
+window.onload = function() {
+    generateGenreOptions();
+    loadMovies();
 };
-} catch (err) {
-  console.error("Error caught:\n" + err.message);
-  alert("JavaScript Error:\n" + err.message);
-}
+
+
+
+
+// Load movies when the page opens
+window.onload = loadMovies;
