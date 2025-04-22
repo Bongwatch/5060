@@ -3,6 +3,98 @@ try {
 
 const movies = [
    { 
+        name: "Home Alone", 
+        page: "asset/movies/PAGEMOVIE_home-alone-4954.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/home-alone-4954.jpg",
+        genre: "action" 
+    },
+    { 
+        name: "Home Alone 2:Lost in New York", 
+        page: "asset/movies/PAGEMOVIE_home-alone-2-lost-in-new-york-4955.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/home-alone-2-lost-in-new-york-4955.jpg",
+        genre: "action" 
+    },
+    { 
+        name: "Punchdrunk:Behind The Mask", 
+        page: "asset/movies/PAGEMOVIE_punchdrunk-behind-the-mask-1630858899.html", 
+        image: "https://img.cdno.my.id/thumb/w_156/h_234/punchdrunk-behind-the-mask-1630858899.webp",
+        genre: "action" 
+    },
+    { 
+        name: "Plankton:The Movie", 
+        page: "asset/movies/PAGEMOVIE_plankton-the-movie-1630858561.html", 
+        image: "https://img.cdno.my.id/thumb/w_200/h_300/plankton-the-movie-1630858561.jpg",
+        genre: "action" 
+    },
+   { 
+        name: "Twister(1996)", 
+        page: "asset/movies/PAGEMOVIE_twister-1996-5827483.html", 
+        image: "https://m.media-amazon.com/images/M/MV5BNGVhY2JjYzgtYjAyOC00ODg0LTliYWEtMzliZWYzMjA2NjYyXkEyXkFqcGc@._V1_SL200_QL1.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "NOVOCAINE", 
+        page: "asset/movies/PAGEMOVIE_novocaine-1038483944.html", 
+        image: "https://media.themoviedb.org/t/p/w188_and_h282_bestv2/xmMHGz9dVRaMY6rRAlEX4W0Wdhm.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "The Chosen", 
+        page: "asset/movies/PAGEMOVIE_the-chosen-6825828.html", 
+        image: "https://media.themoviedb.org/t/p/w188_and_h282_bestv2/fc6FqGatySnYSNYg2U4HQeZfoeV.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Darla in Space", 
+        page: "asset/movies/PAGEMOVIE_darla-in-space-1630858904.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/darla-in-space-1630858904.webp",
+        genre: "Adventure" 
+    },
+
+   { 
+        name: "Cash on Delivery", 
+        page: "asset/movies/PAGEMOVIE_cash-on-delivery-1630858903.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/cash-on-delivery-1630858903.webp",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Hancock: Very Nearly an Armful", 
+        page: "asset/movies/PAGEMOVIE_hancock-very-nearly-an-armful-1630858905.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/hancock-very-nearly-an-armful-1630858905.jpg",
+        genre: "Adventure" 
+    },
+    
+   { 
+        name: "Don‘t Turn Out The Lights", 
+        page: "asset/movies/PAGEMOVIE_don-t-turn-out-the-lights-1630858902.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/don-t-turn-out-the-lights-1630858902.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Shark Warning", 
+        page: "asset/movies/PAGEMOVIE_shark-warning-1630857387.html", 
+        image: "https://img.cdno.my.id/thumb/w_312/h_468/shark-warning-1630857387.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Tale of the Forest Unicorn", 
+        page: "asset/movies/PAGEMOVIE_tale-of-the-forest-unicorn-1630858898.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/tale-of-the-forest-unicorn-1630858898.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "The Bunker", 
+        page: "asset/movies/PAGEMOVIE_the-bunker-1630858897.html", 
+        image: "https://img.cdno.my.id/thumb/w_171/h_257/the-bunker-1630858897.jpg",
+        genre: "Adventure" 
+    },
+   { 
+        name: "Meg 2: The Trench", 
+        page: "asset/movies/PAGEMOVIE_meg-2-the-trench-1627222790.html", 
+        image: "https://media.themoviedb.org/t/p/w116_and_h174_face/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg",
+        genre: "Adventure" 
+    },  
+   { 
         name: "Snow White", 
         page: "asset/movies/PAGEMOVIE_snow-white-1630858706.html", 
         image: "https://img.cdno.my.id/thumb/w_312/h_468/snow-white-1630858706.jpg",
